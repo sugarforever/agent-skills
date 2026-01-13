@@ -1,0 +1,26 @@
+{
+    "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+    "name": "agent-skills",
+    "version": "1.0.0",
+    "description": "Security scanning skills for Next.js and Python projects",
+    "owner": {
+        "name": "VerySmallWoods",
+        "email": "0001coder@gmail.com"
+    },
+    "plugins": [
+        {
+            "name": "nextjs-security-scan",
+            "description": "Security scanning skill for Next.js applications",
+            "version": "1.0.0",
+            "source": "./skills/nextjs-security-scan",
+            "category": "security"
+        },
+        {
+            "name": "python-security-scan",
+            "description": "Security scanning skill for Python projects",
+            "version": "1.0.0",
+            "source": "./skills/python-security-scan",
+            "category": "security"
+        }
+    ]
+}
