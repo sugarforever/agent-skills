@@ -1,6 +1,6 @@
 {
     "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-    "name": "agent-skills",
+    "name": "very-small-agent-skills",
     "version": "1.0.0",
     "description": "Security scanning skills for Next.js and Python projects",
     "owner": {
