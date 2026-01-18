@@ -67,6 +67,32 @@ A comprehensive security vulnerability scanner for Python projects including Fla
 /python-security-scan
 ```
 
+---
+
+### Subtitle Correction
+
+Corrects speech recognition errors in subtitle files (.srt) while preserving exact timeline information.
+
+**Features:**
+- Chinese and English subtitle support
+- Phonetic error correction (同音字/谐音)
+- Technical term recognition (AI/ML, programming)
+- English-Chinese mixed content handling
+- Code identifier formatting (snake_case, camelCase)
+- Interactive terminology collection workflow
+- Validation script for structural integrity
+
+**Workflow:**
+1. Collects domain-specific terminology from user
+2. Identifies speech recognition error patterns
+3. Applies corrections while preserving timestamps
+4. Validates output maintains structural integrity
+
+**Usage:**
+```
+/subtitle-correction
+```
+
 ## Project Structure
 
 ```
@@ -87,22 +113,30 @@ agent-skills/
 │   │   └── assets/               # Templates
 │   │       └── report-template.md
 │   │
-│   └── python-security-scan/
+│   ├── python-security-scan/
+│   │   ├── SKILL.md              # Skill definition
+│   │   ├── references/           # Vulnerability pattern libraries
+│   │   │   ├── owasp-top-10.md
+│   │   │   ├── python-vulnerabilities.md
+│   │   │   ├── injection-patterns.md
+│   │   │   ├── deserialization.md
+│   │   │   ├── flask-security.md
+│   │   │   ├── django-security.md
+│   │   │   └── fastapi-security.md
+│   │   ├── scripts/              # Automation tools
+│   │   │   ├── dependency-audit.sh
+│   │   │   ├── secret-scanner.py
+│   │   │   └── pattern-scanner.py
+│   │   └── assets/               # Templates
+│   │       └── report-template.md
+│   │
+│   └── subtitle-correction/
 │       ├── SKILL.md              # Skill definition
-│       ├── references/           # Vulnerability pattern libraries
-│       │   ├── owasp-top-10.md
-│       │   ├── python-vulnerabilities.md
-│       │   ├── injection-patterns.md
-│       │   ├── deserialization.md
-│       │   ├── flask-security.md
-│       │   ├── django-security.md
-│       │   └── fastapi-security.md
-│       ├── scripts/              # Automation tools
-│       │   ├── dependency-audit.sh
-│       │   ├── secret-scanner.py
-│       │   └── pattern-scanner.py
-│       └── assets/               # Templates
-│           └── report-template.md
+│       ├── references/           # Domain knowledge
+│       │   ├── terminology.md
+│       │   └── srt-format.md
+│       └── scripts/              # Validation tools
+│           └── subtitle_tool.py
 ├── .claude/                      # Claude Code configuration
 ├── LICENSE
 └── README.md
