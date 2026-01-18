@@ -1,8 +1,8 @@
 {
     "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
     "name": "01coder-agent-skills",
-    "version": "1.0.100",
-    "description": "Security scanning skills for Next.js and Python projects",
+    "version": "1.0.101",
+    "description": "Security scanning and productivity skills for development workflows",
     "owner": {
         "name": "VerySmallWoods",
         "email": "0001coder@gmail.com"
@@ -21,6 +21,13 @@
             "version": "1.0.0",
             "source": "./skills/python-security-scan",
             "category": "security"
+        },
+        {
+            "name": "subtitle-correction",
+            "description": "Correct speech recognition errors in SRT subtitle files with word-level diff reports",
+            "version": "1.0.0",
+            "source": "./skills/subtitle-correction",
+            "category": "productivity"
         }
     ]
 }

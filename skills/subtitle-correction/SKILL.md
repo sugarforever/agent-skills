@@ -182,18 +182,62 @@ Use `scripts/subtitle_tool.py` to validate and analyze subtitle files:
 # Validate corrected file preserves structure
 python scripts/subtitle_tool.py validate original.srt corrected.srt
 
-# Show text differences between files
+# Show word-level diff with colored output (default, changes only)
 python scripts/subtitle_tool.py diff original.srt corrected.srt
+
+# Show ALL entries (changed and unchanged) in terminal
+python scripts/subtitle_tool.py diff original.srt corrected.srt --all
+
+# Generate HTML diff report (recommended for review)
+python scripts/subtitle_tool.py diff original.srt corrected.srt --html report.html
+
+# Show simple line-based diff (original/corrected lines)
+python scripts/subtitle_tool.py diff original.srt corrected.srt --simple
+
+# Disable colors for piping to files
+python scripts/subtitle_tool.py diff original.srt corrected.srt --no-color
 
 # Analyze file for potential speech recognition errors
 python scripts/subtitle_tool.py analyze input.srt --terms "LangChain,OpenAI"
 ```
 
+### Diff Output Formats
+
+#### Terminal Output (Default)
+Shows **word-level** changes with colors:
+
+```
+[1] 00:00:01,500 --> 00:00:04,500
+  今天我们来学习[-Luncheon-]{+LangChain+}框架
+
+[3] 00:00:08,000 --> 00:00:12,500
+  我们可以用它来创建[-绘画-]{+会话+}应用程序
+```
+
+- `[-deleted-]` - Text removed (shown in red in terminal)
+- `{+added+}` - Text added (shown in green in terminal)
+- Use `--all` to show unchanged entries too
+
+#### HTML Report (Recommended for Review)
+Generates a full comparison report with:
+- **All entries** displayed (changed and unchanged)
+- **Side-by-side columns**: Original | Corrected | Diff View
+- **Visual highlighting**: Red strikethrough for deletions, green for additions
+- **Summary statistics**: Total entries, changed count, unchanged count
+- **Jump links**: Quick navigation to changed entries
+- **Change indicators**: Yellow dot marks changed rows
+
+```bash
+python scripts/subtitle_tool.py diff original.srt corrected.srt --html diff_report.html
+```
+
+Then open `diff_report.html` in a browser.
+
 ### Validation Workflow
 
 1. **Before correction**: Run `analyze` to identify potential errors
 2. **After correction**: Run `validate` to ensure structural integrity
-3. **Review changes**: Run `diff` to see all text modifications
+3. **Review changes**: Run `diff --html report.html` to generate a visual comparison report
 
 ### Validation Checks
 - Entry count matches original
@@ -247,6 +291,16 @@ python scripts/subtitle_tool.py analyze input.srt --terms "LangChain,OpenAI"
 3. Apply corrections using provided terms as primary reference
 4. Run `validate` to confirm structural integrity
 5. Save corrected file with `-corrected` suffix
-6. Present file with summary of changes
+6. Generate diff report and present summary of changes
+7. **Offer HTML report**: Ask user if they want an HTML diff report for easier review
 
 **Output**: Provide categorized summary of corrections made.
+
+**After completion, prompt user**:
+```
+修正完成！我可以生成一个 HTML 差异报告，方便您在浏览器中查看所有修改。
+需要生成 HTML 报告吗？
+
+Correction complete! I can generate an HTML diff report for easier review in your browser.
+Would you like me to generate the HTML report?
+```
